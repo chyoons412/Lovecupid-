@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💘 청룡제 운명의 짝꿍 테스트 💘</title>
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: linear-gradient(135deg, #ffe6f2, #e6f0ff);
+      margin: 0; padding: 0;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.15);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+    h1 { color: #d6336c; margin-bottom: 15px; }
+    .question { margin: 20px 0; font-size: 1.2em; }
+    button {
+      background: #ff7eb9;
+      border: none;
+      padding: 12px 25px;
+      margin: 8px;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover { background: #ff4fa3; }
+    #result { font-size: 1.3em; margin-top: 20px; display: none; }
+    #result img { width: 80px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💘 운명의 짝꿍 테스트 💘</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const questions = [
+      { q: "1️⃣ 새로운 사람과 금방 친해진다", a: ["그렇다", "아니다"], type: "E" },
+      { q: "2️⃣ 계획보단 즉흥이 더 재밌다", a: ["그렇다", "아니다"], type: "P" },
+      { q: "3️⃣ 감정보단 논리가 더 중요하다", a: ["그렇다", "아니다"], type: "T" },
+      { q: "4️⃣ 사람의 말보다 분위기를 먼저 읽는다", a: ["그렇다", "아니다"], type: "N" },
+      { q: "5️⃣ 고민을 말하기보단 혼자 해결한다", a: ["그렇다", "아니다"], type: "I" },
+      { q: "6️⃣ 친구가 울면 나도 같이 운다", a: ["그렇다", "아니다"], type: "F" },
+    ];
+
+    const quizEl = document.getElementById("quiz");
+    const resultEl = document.getElementById("result");
+    let index = 0;
+    let score = { E:0, I:0, N:0, S:0, T:0, F:0, P:0, J:0 };
+
+    function showQuestion() {
+      const q = questions[index];
+      quizEl.innerHTML = `
+        <div class="question">
+          <h2>${q.q}</h2>
+          <button onclick="answer(true)"> ${q.a[0]} </button>
+          <button onclick="answer(false)"> ${q.a[1]} </button>
+        </div>`;
+    }
+
+    function answer(isYes) {
+      const q = questions[index];
+      if (isYes) score[q.type]++;
+      else {
+        if (q.type === "E") score.I++;
+        if (q.type === "I") score.E++;
+        if (q.type === "N") score.S++;
+        if (q.type === "S") score.N++;
+        if (q.type === "T") score.F++;
+        if (q.type === "F") score.T++;
+        if (q.type === "P") score.J++;
+        if (q.type === "J") score.P++;
+      }
+      index++;
+      if (index < questions.length) showQuestion();
+      else showResult();
+    }
+
+    function showResult() {
+      quizEl.style.display = "none";
+      resultEl.style.display = "block";
+
+      const mbti = 
+        (score.E > score.I ? "E" : "I") +
+        (score.N > score.S ? "N" : "S") +
+        (score.T > score.F ? "T" : "F") +
+        (score.P > score.J ? "P" : "J");
+
+      const match = {
+        "ENFP": {text: "💞 INFJ — 감성 깊은 이해자", img: "https://i.ibb.co/6Rv1Qx2/heart.png"},
+        "INFJ": {text: "🌸 ENFP — 따뜻한 에너지 메이트", img: "https://i.ibb.co/6Rv1Qx2/heart.png"},
+        "ISTJ": {text: "🧠 ESFP — 계획형+자유형 완벽 밸런스", img: "https://i.ibb.co/4Rw2yJZ/mind.png"},
+        "ESFP": {text: "🌟 ISTJ — 현실적 든든한 짝", img: "https://i.ibb.co/4Rw2yJZ/mind.png"},
+        "ENTJ": {text: "🔥 INFP — 정열과 순수의 만남", img: "https://i.ibb.co/b3zG0jF/fire.png"},
+        "INFP": {text: "💗 ENTJ — 추진력 든든한 리더형", img: "https://i.ibb.co/b3zG0jF/fire.png"},
+      };
+
+      const partner = match[mbti] || {text: "✨ 누구와도 잘 맞는 팔방미인!", img: "https://i.ibb.co/6Rv1Qx2/heart.png"};
+
+      resultEl.innerHTML = `<p>당신의 유형은 <b>${mbti}</b> 💘</p>
+                            <p>${partner.text}</p>
+                            <img src="${partner.img}" alt="짝꿍 이미지" />`;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
