@@ -3,23 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>운명의 짝꿍 테스트 💘</title>
+  <title>💞 운명의 짝꿍 테스트 💞</title>
   <style>
-    body { font-family: 'Pretendard', sans-serif; text-align: center; background: #fff0f5; color: #333; }
-    h1 { margin-top: 40px; color: #ff4081; }
-    .question { margin: 30px auto; width: 80%; max-width: 500px; background: white; border-radius: 15px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    button { background: #ff80ab; color: white; border: none; padding: 10px 20px; margin: 5px; border-radius: 10px; cursor: pointer; font-size: 16px; }
-    button:hover { background: #ff4081; }
-    #result { display: none; margin-top: 40px; }
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Pretendard:wght@400;600&display=swap');
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: linear-gradient(to bottom, #fff8f9, #ffeef0);
+      color: #5a4a4a;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #ff7fa5;
+      margin-top: 40px;
+      font-family: 'Nanum Pen Script', cursive;
+      font-size: 48px;
+    }
+    .question {
+      margin: 30px auto;
+      width: 85%;
+      max-width: 520px;
+      background: #ffffffcc;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(255,182,193,0.3);
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+    .question:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(255,182,193,0.4);
+    }
+    button {
+      background: #ffd3dc;
+      color: #5a4a4a;
+      border: none;
+      padding: 12px 22px;
+      margin: 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #ffb8c6;
+      color: white;
+    }
+    #result {
+      display: none;
+      margin-top: 40px;
+    }
+    #result-text {
+      background: #fff7f9;
+      width: 85%;
+      max-width: 500px;
+      margin: 20px auto;
+      border-radius: 15px;
+      padding: 20px;
+      line-height: 1.7;
+      font-size: 18px;
+      box-shadow: 0 3px 10px rgba(255,192,203,0.3);
+    }
+    .restart-btn {
+      background: #ffadc1;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .restart-btn:hover {
+      background: #ff92af;
+    }
   </style>
 </head>
 <body>
-  <h1>💘 운명의 짝꿍 테스트 💘</h1>
+  <h1>💞 사랑의 아츄핑! 당신의 사랑 상대는? 💞</h1>
   <div id="quiz"></div>
   <div id="result">
-    <h2>결과 발표 🎉</h2>
+    <h2>💓 당신의 사랑 타입은... 💓</h2>
     <p id="result-text"></p>
-    <button onclick="location.reload()">다시 하기</button>
+    <button class="restart-btn" onclick="location.reload()">다시 해보기 💌</button>
   </div>
 
   <script>
@@ -33,10 +101,10 @@
     ];
 
     const results = [
-      "☀️ <b>A형</b> — 열정 폭발 사랑꾼! 표현력 만점의 분위기 리더형 💖",
-      "🌙 <b>B형</b> — 감성파 츤데레! 겉은 쿨하지만 속은 따뜻한 반전 매력 💌",
-      "☕ <b>C형</b> — 편안한 친구 같은 연인! 신뢰와 안정감이 최고인 현실 로맨티스트 💑",
-      "💐 <b>D형</b> — 예측불가 매력형! 감정에 솔직하고 즉흥적인 로맨틱 타입 🌹"
+      "☀️ <b>A형</b> — <b>열정 폭발 사랑꾼!</b><br>표현력 만점의 분위기 리더형 💖<br><small>당신의 사랑은 늘 반짝이고 뜨거워요!</small>",
+      "🌙 <b>B형</b> — <b>감성파 츤데레!</b><br>겉은 쿨하지만 속은 따뜻한 반전 매력 💌<br><small>말보단 행동, 사랑은 조용히 보여주는 타입.</small>",
+      "☕ <b>C형</b> — <b>편안한 친구 같은 연인!</b><br>신뢰와 안정감이 최고인 현실 로맨티스트 💑<br><small>사랑이 곧 일상, 따뜻한 온도 유지형.</small>",
+      "💐 <b>D형</b> — <b>예측불가 매력형!</b><br>감정에 솔직하고 즉흥적인 로맨틱 타입 🌹<br><small>매 순간이 영화 같은 연애를 꿈꾸는 사람!</small>"
     ];
 
     let current = 0;
